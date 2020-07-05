@@ -50,7 +50,7 @@ class Sudoku:
             self.finalBoard=self.board.copy()
             self.completed=True
     def finalBoardZeroFilling(self):
-        noOfZeros=random.randint(45,54)
+        noOfZeros=random.randint(40,50)
         while noOfZeros>=0:
             r=random.randint(0,8)
             c=random.randint(0,8)
@@ -58,9 +58,6 @@ class Sudoku:
                 self.finalBoard[r,c]=0
                 noOfZeros-=1
     def generateBoard(self):
-        self.board[0,0]=random.randint(1,9)#top left randomized both bound taken
-        self.board[8,8]=random.randint(1,9)#bottom right randomized both bound taken
-        self.board[4,4]=random.randint(1,9)#mid also randamized
         self.fillBox()
         self.finalBoardZeroFilling()
         ##################### Reseting ##############
@@ -78,6 +75,7 @@ class Sudoku:
                                 self.board[r,c]=0
                     if self.board[r,c]==0:#if no value is placed then back track
                         return
+            #when finaly it get resolved, means out of the loop
             self.finalBoard=self.board.copy()
             self.completed=True
     def playBySelf(self):
